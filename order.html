@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Place Your Order | 101 Bagels</title>
+<link rel="stylesheet" type="text/css" href="style.css">
+
+<style>
+/* Order form styling */
+.order-container {
+  max-width: 600px;
+  margin: 30px auto;
+  background: #F3E8DD; /* Soft cream/tan */
+  padding: 25px;
+  border-radius: 20px;
+  border: 2px solid #000;
+}
+
+.order-container h1 {
+  font-family: 'Arial', sans-serif;
+  font-size: 28px;
+  color: #BB8249;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.order-container label {
+  display: block;
+  margin-top: 15px;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.order-container input,
+.order-container textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border-radius: 12px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+
+.order-container button {
+  margin-top: 20px;
+  padding: 12px 25px;
+  background-color: #BB8249; /* matches your buttons */
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+.order-container button:hover {
+  background-color: #87a9cc; /* matches hover style */
+}
+
+/* Total price display */
+#totalPrice {
+  font-weight: bold;
+  margin-top: 10px;
+  font-size: 18px;
+  color: #BB8249;
+}
+</style>
+</head>
+<body>
+
+<!-- Logo -->
+<div id="logo">
+  <a href="index.html">
+    <img src="logo.png" alt="101 Bagels Logo" width="100" height="99">
+  </a>
+</div>
+
+<!-- Header -->
+<div class="Header">
+  <a href="index.html" class="button">Home</a>
+  <a href="menu.html" class="button">Menu</a>
+  <a href="about.html" class="button">About</a>
+  <a href="gallery.html" class="button">Gallery</a>
+  <a href="contact.html" class="button">Contact</a>
+</div>
+
+<!-- Order Form -->
+<div class="order-container">
+  <h1 id="itemName">Order Item</h1>
+
+  <label for="customerName">Your Name:</label>
+  <input type="text" id="customerName" placeholder="Enter your name">
+
+  <label for="quantity">Quantity:</label>
+  <input type="number" id="quantity" min="1" value="1">
+
+  <p id="totalPrice">Total: $0.00</p>
+
+  <label for="instructions">Special Instructions:</label>
+  <textarea id="instructions" rows="4" placeholder="Extra toppings, preferences, etc."></textarea>
+
+  <button id="submitOrder">Submit Order</button>
+</div>
+
+<!-- Footer -->
+<div class="Footer">
+  <p><strong>101 Bagels & Subs</strong><br>
+  760‑421‑6555<br>
+  Oceanside, CA</p>
+
+  <div class="footer-buttons">
+    <a href="about.html" class="button">About</a>
+    <a href="gallery.html" class="button">Gallery / Social Media</a>
+    <a href="contact.html" class="button">Contact / Address</a>
+  </div>
+
+  <p>Copyright &copy; <span id="year"></span> 101 Bagels</p>
+</div>
+
+<script>
+// Prices of menu items
+const prices = {
+  "Plain Bagel": 1.50,
+  "Everything Bagel": 1.75,
+  "Asiago Cheese Bagel": 1.85,
+  "Cinnamon Raisin Bagel": 1.80,
+  "Turkey & Swiss": 5.99,
+  "Ham & Cheddar": 5.49,
+  "Veggie Delight": 5.25,
+  "Regular Coffee": 2.25,
+  "Café Latte": 3.50,
+  "Iced Coffee": 2.99
+};
+
+// Get item from URL
+const params = new URLSearchParams(window.location.search);
+const item = params.get("item");
+
+const itemNameEl = document.getElementById("itemName");
+const quantityEl = document.getElementById("quantity");
+const totalPriceEl = document.getElementById("totalPrice");
+
+if(item && prices[item]) {
+  itemNameEl.textContent = "Order: " + item;
+  updateTotal();
+}
+
+// Update total when quantity changes
+quantityEl.addEventListener("input", updateTotal);
+
+function updateTotal() {
+  const qty = parseInt(quantityEl.value) || 1;
+  const total = (prices[item] * qty).toFixed(2);
+  totalPriceEl.textContent = "Total: $" + total;
+}
+
+// Submit order (alert)
+document.getElementById("submitOrder").addEventListener("click", () => {
+  const name = document.getElementById("customerName").value;
+  const instructions = document.getElementById("instructions").value;
+  const qty = parseInt(quantityEl.value) || 1;
+  if(!name){ alert("Please enter your name."); return; }
+  alert(`Thank you, ${name}!\nYour order: ${qty} x "${item}"\nTotal: $${(prices[item]*qty).toFixed(2)}\nInstructions: ${instructions}`);
+});
+
+// Auto-update year in footer
+document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
