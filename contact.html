@@ -6,15 +6,54 @@
   <link rel="icon" type="image/x-icon" href="logo.png">
   <link rel="stylesheet" type="text/css" href="style.css">
   <title>101 Bagels | Contact</title>
+
+  <style>
+    /* Extra layout styling added, but keeping ALL your original CSS */
+    .contact-box {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 20px;
+      width: 90%;
+      max-width: 1000px;
+      margin: 20px auto;
+      flex-wrap: wrap;
+    }
+
+    .contact-info {
+      flex: 1;
+      min-width: 280px;
+      background: #F3E8DD;
+      padding: 20px;
+      border-radius: 18px;
+      border: 2px solid #000;
+      font-size: 17px;
+    }
+
+    .map-container {
+      flex: 1;
+      min-width: 280px;
+    }
+
+    .map-container iframe {
+      width: 100%;
+      height: 350px;
+      border: 0;
+      border-radius: 18px;
+      border: 2px solid #000;
+    }
+  </style>
 </head>
 <body>
-   <!-- Logo (clickable) -->
+
+  <!-- Logo (clickable) -->
   <div id="logo">
     <a href="index.html">
       <img src="logo.png" alt="101 Bagels Logo" width="100" height="99">
     </a>
   </div>
 
+  <!-- Header -->
   <div class="Header">
     <a href="index.html" class="button">Home</a>
     <a href="menu.html" class="button">Menu</a>
@@ -23,17 +62,34 @@
     <a href="contact.html" class="button">Contact</a>
   </div>
 
-  <h1>Contact Us</h1>
-  <p>We’d love to hear from you! Feel free to reach out with questions or feedback.</p>
+  <p style="text-align:left;"><h1>Contact Us</h1>
+  <p style="text-align:center;">We’d love to hear from you! Feel free to reach out with questions or feedback.</p>
 
-  <div class="contact-info">
-    <p><strong>Address:</strong> 323 N Coast Hwy Suite C
-Oceanside, CA 92054</p>
-    <p><strong>Phone:</strong> 760-421-6555</p>
- 
+  <!-- Contact + Map Box -->
+  <div class="contact-box">
+
+    <div class="contact-info">
+      <p><strong>Address:</strong><br>
+      101 Bagels & Subs<br>
+      323 N Coast Hwy Suite C<br>
+      Oceanside, CA 92054</p>
+
+      <p><strong>Phone:</strong> 760-421-6555</p>
+    </div>
+
+    <div class="map-container">
+      <!-- Correct embed for your location -->
+      <iframe 
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3332.149324845103!2d-117.380996!3d33.197289!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80dc6e36e0378a05%3A0x2e7ea5ebeed33058!2s101%20Bagels%20%26%20Subs!5e0!3m2!1sen!2sus!4v1700000000000"
+        allowfullscreen="" 
+        loading="lazy" 
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+
   </div>
 
-<!-- Footer -->
+  <!-- Footer -->
   <div class="Footer">
     <p><strong>101 Bagels & Subs</strong><br>
     760-421-6555<br>
@@ -48,9 +104,9 @@ Oceanside, CA 92054</p>
     <p>Copyright &copy; <span id="year"></span> 101 Bagels</p>
   </div>
 
-  <!-- Script to auto-update year -->
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
   </script>
+
 </body>
 </html>
